@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Post details{% endblock %}
+
+{% block content %}
+        <br>
+        <div class="error">{{error}}</div>
+        <div class="w3-card-4" style="width:100%;">
+            <header class="w3-container w3-light-grey">
+                <h2>{{post.subject}}</h2>
+                <h5>Created by: {{username_dict[post.created_by]}}</h5>
+            </header>
+            <div class="w3-container">
+                <pre class="content">{{post.content}}</pre>
+            <div class="w3-container">
+                <footer>
+                <table class="w3-table">
+                    <tr>
+                        <td>
+                            <form method="post">
+                                {% if like.like_value == true %}
+                                    <input type="submit" name = "like" value="Unlike">
+                                {% else %}
+                                    <input type="submit" name = "like" value="Like">
+                                {% endif %}
+                             </form>
+                            <br>
+                        </td>
+                           <td>
+                            <form method="post">
+                                    <input type="submit" name = "edit_post" value="Edit">
+                             </form>
+                            <br>
+                        </td>
+                        <td>
+                            <form method="post">
+                                <input type="submit" name="delete_post" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                </footer>
+            </div>
+            </div>
+    </div>
+    </div>
+
+    <div class="w3-container">
+        <br>
+        <label>
+            <div>Comments:</div>
+        </label>
+        <br>
+        <div class="w3-card-4" style="width:70%;">
+            <div class="w3-container">
+                <br>
+                <form method="post">
+                    <label>
+                        <textarea name="comment_content">{{comment}}</textarea>
+                    </label>
+                    <!--<div class="comment_error">{{error}}</div>-->
+                    <input type="submit" name="submit_comment">
+            </form>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        {% for comment in comments %}
+        <br>
+            <div class="w3-card-4" style="width:70%;">
+                <div class="w3-container">
+                    <h5>{{username_dict[comment.created_by]}} said:</h5>
+                    <pre>{{comment.content}}</pre>
+                </div>
+                <div class="w3-container">
+                <footer>
+                <table class="w3-table">
+                    <tr>
+                       <td>
+                            <form method="post">
+                                <input type="submit" name = "update_comment" value="Edit">
+                                <input type="hidden" name="comment_id" value={{comment.key().id()}}>
+                                <input type="hidden" name="comment_author" value={{comment.created_by}}>
+                             </form>
+                            <br>
+                        </td>
+                        <td>
+                            <form method="post">
+                                <input type="hidden" name="comment_id" value={{comment.key().id()}}>
+                                <input type="hidden" name="comment_author" value={{comment.created_by}}>
+                                <input type="submit" name="delete_comment" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                </footer>
+            </div>
+            </div>
+        {% endfor %}
+        <br>
+    </div>
+
+{% endblock %}

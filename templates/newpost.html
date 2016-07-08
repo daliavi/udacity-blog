@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+        <h2>New Post</h2>
+        <div class="error">{{error}}</div>
+        <form method="post">
+            <label>
+                <div>Subject</div>
+                <input type="text" name="subject" value="{{subject}}">
+            </label>
+
+            <label>
+                <div>Content</div>
+                <textarea class="text_entry" name="content">{{content}}</textarea>
+            </label>
+
+            <input type="submit" name="save_post">
+            <input type="submit" name="cancel_new_post" value="Cancel">
+        </form>
+{% endblock %}

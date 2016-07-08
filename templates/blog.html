@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Main{% endblock %}
+
+{% block content %}
+        {% if username != '' %}
+            <p>Welcome back, {{username}}</p>
+            <a href="/blog/newpost">Add a new post</a>
+            <a href="/blog/logout">Logout</a>
+        {% else %}
+            <a href="/blog/login">Login</a>
+            <a href="/blog/signup">Sign up</a>
+        {% endif %}
+        {% if posts|count >1 %}
+            {% for post in posts %}
+            <div class="w3-card-4" style="width:100%;">
+                <header class="w3-container w3-light-grey">
+                    <h3><a href="/blog/{{post.key().id()}}">{{post.subject}}</a></h3>
+                </header>
+                <div class="w3-container">
+                    <pre class="content">{{post.content}}</pre>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        {% else %}
+        <div class="w3-card-4" style="width:100%;">
+                <header class="w3-container w3-light-grey">
+                    <h3><a href="/blog/{{posts[0].key().id()}}">{{posts[0].subject}}</a></h3>
+                </header>
+                <div class="w3-container">
+                    <pre class="content">{{posts[0].content}}</pre>
+                </div>
+            </div>
+            <br>
+        {% endif %}
+        <br>
+{% endblock %}

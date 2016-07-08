@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <title>{% block title %}{% endblock %} - Blog </title>
+    {% endblock %}
+</head>
+<body>
+    <div class="w3-container">
+        <h1>Udacity blog</h1>
+        <a href="/blog">Home</a>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <!--<div class="footer">-->
+        <!--{% block footer %}-->
+        <!--{% endblock %}-->
+    <!--</div>-->
+</body>
+</html>
